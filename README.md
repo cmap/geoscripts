@@ -1,9 +1,4 @@
 # GEOSCRIPTS
----------
-Author: Rajiv Narayan
-Email: narayan@broadinstitute.org
-Changes:
----------
 A collection of command-line utilities for manipulating with GEO data
 
 ### GEODL_SOFT.SH : Download SOFT files from GEO
