@@ -1,0 +1,53 @@
+#!/bin/bash
+# GEODL_SOFT.SH Download GEO SOFT annotation files.
+# Usage: geodl_soft.sh <filelist> [outdir]
+# filelist: GEO Accession numbers (GSE or GSM), one per line
+# outdir: output folder [default=$PWD]
+
+# $Author: Rajiv Narayan [narayan@broadinstitute.org]
+# $Version: 142
+# $Date: Jun.15.2010 19:08:50 EDT
+
+# output folder
+outdir=$PWD
+gsepath=${GSEPATH:-/xchip/obelix/bged/gse}
+gsmpath=${GSMPATH:-/xchip/obelix/bged/gsm}
+CHECK_BGED=${CHECK_BGED:-1}
+
+if [[ -n $2 ]]; then
+    outdir=$2
+fi
+
+function check() {
+    f=$1
+    outdir=$2
+    exists=0
+    for p in $outdir $gsepath $gsmpath;
+    do
+	if [[ -f $p/$f.SOFT || -f $p/$f.SOFT.gz ]]; then
+	    exists=1
+	    break
+	fi
+    done
+    [[ $exists == 1 ]]
+}
+
+if [ "$1xxx" != "xxx" ]; then
+    grep -v '#' $1 | while read i
+    do
+	outfile=$outdir/${i}.SOFT
+	echo $i
+#	if [[ ! -f $outfile ]]; then
+	if (! check $i $outdir ); then
+	    curl --progress-bar "https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=${i}&targ=self&form=text&view=quick"  -o $outfile
+	else
+	    if [[ ! -f $outfile ]]; then
+		echo "File exists in BGED, skipping"
+	    else
+		echo "Exists skipping"
+	    fi
+	fi
+    done
+else
+    echo "Usage: geodl_soft.sh <filelist> [outdir]"
+fi

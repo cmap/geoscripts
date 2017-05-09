@@ -1,0 +1,6 @@
+GEO_PLATFORM	DESC	CHIP_NAME
+GPL96		[HG-U133A] Affymetrix Human Genome U133A Array	HG_U133A
+GPL570		[HG-U133_Plus_2] Affymetrix Human Genome U133 Plus 2.0 Array	HG_U133_PLUS_2
+GPL571		[HG-U133A_2] Affymetrix Human Genome U133A 2.0 Array   HG_U133A_2
+GPL3921		[HT_HG-U133A] Affymetrix HT Human Genome U133A Array   HT_HG_U133A
+GPL4685		[U133AAofAv2] Affymetrix GeneChip HT-HG_U133A Early Access Array	HG_U133AAOFAV2

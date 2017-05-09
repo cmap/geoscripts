@@ -1,0 +1,1 @@
+awk BEGIN{FS="\t";OFS="\t";IGNORECASE=1} (NR==1){print};  $2~/pancr|islet/&&/sapiens/&&/GPL96|GPL570|GPL571|GPL3921|GPL4685/{print} gse_table2.txt

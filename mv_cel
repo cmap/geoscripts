@@ -1,0 +1,55 @@
+#!/bin/env bash
+source /xchip/cogs/matlib/bin/bashtk -q
+SCRIPT="${0##*/}"
+BGEDPATH='/xchip/obelix/bged'
+
+USAGE_HELP="--------------------------------------------------
+$SCRIPT: Move CEL and CXT files into BGED.
+Author: Rajiv Narayan [narayan@broadinstitute.org]
+--------------------------------------------------
+Usage: $SCRIPT [INPATH]
+
+Finds CEL and CXT files in INPATH. Checks if files already exist in
+BGED ($BGEDPATH) before moving. A report of the move operation is in
+INPATH/$SCRIPT.rpt.
+"
+
+CELPATH="$1"
+if [[ -n $CELPATH ]]; then
+    RPT="$CELPATH/$SCRIPT.rpt"
+    echo -e "SAMPLE_ID\tSTATUS" > $RPT
+    find $CELPATH -name '*.CEL.gz'| while read f; do
+    # check cel,cxt pairs exist
+	cxtfile=${f/.CEL.gz/.CXT.gz}
+	softfile=${f/.CEL.gz/.SOFT}
+	p=(`file_parts $f`)
+	sid=${p[1]}
+ 	if [[ -f $cxtfile ]]; then
+	    fn=$sid${p[2]}
+	    tgtcel=$BGEDPATH/cel/$fn
+	    tgtcxt=$BGEDPATH/cxt/${fn/.CEL.gz/.CXT.gz}
+	    tgtsoft=$BGEDPATH/gsm/${fn/.CEL.gz/.SOFT}
+	    	# check if files exist in bged
+	    if [[ ! -f $tgtcel ]]; then
+#		status_busy "Moving $fn"
+		mv $f $tgtcel
+		mv $cxtfile $tgtcxt
+		# move soft file if it exists
+		if [[ -f $softfile ]]; then
+		    mv $softfile $tgtsoft
+		fi
+#		status_pass
+		echo -e "$sid\tMOVED" >> $RPT
+	    else
+#		status_warn "$tgtcel already exists, skipping"
+		echo -e "$sid\tSKIPPPED" >> $RPT
+	    fi
+	else
+#	    status_busy "$cxtfile file not found"
+#	    status_fail
+	    echo -e "$sid\tCXT_NOT_FOUND" >> $RPT
+	fi
+    done
+else
+    msg_help
+fi
