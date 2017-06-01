@@ -1,9 +1,9 @@
 # QCRPT.R Generate QC report for a list of text files
 #
-# R CMD BATCH --slave '--args txtpath=<txtfolder> txtfiles=<filename> outfile=<filename> qcrpt.r
+# R CMD BATCH --slave '--args cxtpath=<cxtfolder> cxtfiles=<filename> outfile=<filename> qcrpt.r
 #
 # Input arguments to script:
-# txtfiles: text file with list of TXT files to process (one file per line)
+# cxtfiles: text file with list of TXT files to process (one file per line)
 # outfile: output file for QC report
 
 # returns string w/o leading or trailing whitespace
@@ -17,9 +17,9 @@ if (nin == 3)
     for (a in args) {
       v = strsplit(a, '=')[[1]]
       switch(v[1],
-             txtfiles =  txtFiles <- scan(v[2], what='', comment.char='#'),
+             cxtfiles =  cxtFiles <- scan(v[2], what='', comment.char='#'),
 	     outfile = outFile <-v[2],
-             txtpath = txtPath <- v[2],
+             cxtpath = cxtPath <- v[2],
              cat ("Invalid argument specified:",v[1],"\n")
              )
     }
@@ -28,13 +28,13 @@ if (nin == 3)
     cat ("CEL_NAME", "CHIP", "NUM_FEATURES","MEAN_INT","STDEV_INT","MEDIAN_INT","MIN_INT","MIN_ROB10","MAX_INT","MAX_ROB10","PCALL_PERCENT","MCALL_PERCENT","ACALL_PERCENT","GAP35_RATIO","ACT35_RATIO","GAP3M_RATIO","ACT3M_RATIO","BIOB_PCALL","IS_SPIKE_ASCEND","SPIKE_INT","\n",sep="\t", file=ofid)
     fs=.Platform$file.sep
     
-    #loop over txtFiles
-    for (f in txtFiles)
+    #loop over cxtFiles
+    for (f in cxtFiles)
       {
         # strip extension, assume the file is foo.CXT.gz
         celName <- strsplit(f,'.CEL$|.CEL.gz$|.TXT$|.CXT$|.CXT.gz$')[[1]]
         fn <- paste(celName, ".CXT.gz", sep="")
-        fname <- file.path(txtPath, fn, fsep=fs)
+        fname <- file.path(cxtPath, fn, fsep=fs)
 	cat (fname,"\n")
         if ( file.access(fname, 4) == 0 )
           {
