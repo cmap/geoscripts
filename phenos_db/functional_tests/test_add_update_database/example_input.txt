@@ -1,0 +1,13 @@
+gsm	gse	gpl	n	sig_id	class_id	description	pheno_label	pert_type	perturbagen	perturbagen_id_type	perturbagen_id	status	pmid	batch
+GSM314405	GSE12513	GPL570	12	GSE12513_1	A	FA6 transiently transfected with AGR2 siRNA, transfection C	AGR2 LOF	trt_kd	AGR2	ezid	10551	done	#N/A	6
+GSM314406	GSE12513	GPL570	12	GSE12513_1	A	FA6 transiently transfected with AGR2 siRNA, transfection A	AGR2 LOF	trt_kd	AGR2	ezid	10551	done	#N/A	6
+GSM314407	GSE12513	GPL570	12	GSE12513_1	A	FA6 transiently transfected with AGR2 siRNA, transfection B	AGR2 LOF	trt_kd	AGR2	ezid	10551	done	#N/A	6
+GSM314408	GSE12513	GPL570	12	GSE12513_1	B	FA6 transiently transfected with non-targeting siRNA, transfection C	control	trt_kd	siGENOME Non-Targeting siRNA pool #2		#N/A	done	#N/A	6
+GSM314409	GSE12513	GPL570	12	GSE12513_1	B	FA6 transiently transfected with non-targeting siRNA, transfection A	control	trt_kd	siGENOME Non-Targeting siRNA pool #2		#N/A	done	#N/A	6
+GSM314410	GSE12513	GPL570	12	GSE12513_1	B	FA6 transiently transfected with non-targeting siRNA, transfection B	control	trt_kd	siGENOME Non-Targeting siRNA pool #2		#N/A	done	#N/A	6
+GSM314411	GSE12513	GPL570	12	GSE12513_2	A	MiaPaCa2 pCEP4 clone 1	AGR2 LOF	trt_kd	AGR2	ezid	10551	done	#N/A	6
+GSM314412	GSE12513	GPL570	12	GSE12513_2	A	MiaPaCa2 pCEP4 clone 3	AGR2 LOF	trt_kd	AGR2	ezid	10551	done	#N/A	6
+GSM314413	GSE12513	GPL570	12	GSE12513_2	A	MiaPaCa2 pCEP4 clone 5	AGR2 LOF	trt_kd	AGR2	ezid	10551	done	#N/A	6
+GSM314414	GSE12513	GPL570	12	GSE12513_2	B	MiaPaCa2 pCEP4 - AGR2 clone 15	control	trt_kd	#N/A	#N/A	#N/A	done	#N/A	6
+GSM314415	GSE12513	GPL570	12	GSE12513_2	B	MiaPaCa2 pCEP4 - AGR2 clone 16	control	trt_kd	#N/A	#N/A	#N/A	done	#N/A	6
+GSM314416	GSE12513	GPL570	12	GSE12513_2	B	MiaPaCa2 pCEP4 - AGR2 clone 2	control	trt_kd	#N/A	#N/A	#N/A	done	#N/A	6
